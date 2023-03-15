@@ -1,0 +1,51 @@
+---
+- name: "AWS - Install docker"
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update all packages
+      yum:
+        name: '*'
+        state: latest
+        update_only: yes
+
+    - name: Ensure a list of yum packages are installed
+      yum:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+      vars:
+        packages:
+        - yum-utils
+        - device-mapper-persistent-data
+        - lvm2
+        - git
+        - docker
+        - python3-pip
+
+
+    - name: Add ec2-user to docker group
+      shell: "usermod -a -G docker ec2-user"
+
+
+    - name: users | adding docker users (for use without sudo)
+      user:
+        name: ec2-user
+        append: yes
+        groups: docker
+
+
+    - name: Enable Docker CE service at startup
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Ensure Python pip packages are installed
+      pip:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - boto
+        - boto3
+        - docker-compose
