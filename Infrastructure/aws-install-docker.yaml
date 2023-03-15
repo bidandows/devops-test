@@ -23,11 +23,6 @@
         - docker
         - python3-pip
 
-
-    - name: Add ec2-user to docker group
-      shell: "usermod -a -G docker ec2-user"
-
-
     - name: users | adding docker users (for use without sudo)
       user:
         name: ec2-user
