@@ -3,9 +3,9 @@ FROM node:19 AS builder
 WORKDIR /app
 
 
-ARG REACT_APP_COMMENTS_API=http://comments.digitalfactory-devops.dz:4005
-ARG REACT_APP_POSTS_API=http://posts.digitalfactory-devops.dz:4005
-ARG REACT_APP_QUERY_API=http://query.digitalfactory-devops.dz:4005
+ARG REACT_APP_COMMENTS_API=http://comments.afri-tech.xyz:4005
+ARG REACT_APP_POSTS_API=http://posts.afri-tech.xyz:4005
+ARG REACT_APP_QUERY_API=http://query.afri-tech.xyz:4005
 
 
 ENV REACT_APP_COMMENTS_API=${REACT_APP_COMMENTS_API}
