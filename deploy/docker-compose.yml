@@ -11,7 +11,7 @@ services:
       - 80:80/tcp
       - 443:443/tcp
     volumes:
-      - ./nginx_config:/etc/nginx/user_conf.d
+      - ./nginx_config:/etc/nginx/conf.d
       - nginx_secrets:/etc/letsencrypt
 
 
