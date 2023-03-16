@@ -22,7 +22,7 @@ services:
   comments:
     image: comments:1
     environment:
-      REACT_EVENT_BUS: http://event-bus
+      REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4001
 
@@ -30,24 +30,24 @@ services:
   event-bus:
     image: event-bus:1
     environment:
-      REACT_POSTS_API: http://posts
-      REACT_COMMENTS_API: http://comments
-      REACT_MODERATION_API: http://moderation
-      REACT_QUERY_API: http://query
+      REACT_POSTS_API: http://posts:4000
+      REACT_COMMENTS_API: http://comments:4001
+      REACT_MODERATION_API: http://moderation:4003
+      REACT_QUERY_API: http://query:4002
     expose:
       - 4005
 
   moderation:
     image: moderation:1
     environment:
-      REACT_EVENT_BUS: http://event-bus
+      REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4003
 
   posts:
     image: posts:1
     environment:
-      REACT_EVENT_BUS: http://event-bus
+      REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4000
 
@@ -55,7 +55,7 @@ services:
   query:
     image: query:1
     environment:
-      REACT_EVENT_BUS: http://event-bus
+      REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
 
