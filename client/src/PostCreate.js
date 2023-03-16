@@ -7,7 +7,7 @@ const PostCreate = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if (title.trim()) {
-      await axios.post("http://localhost:4000/posts/create", { title });
+      await axios.post(`${process.env.REACT_APP_POSTS_API}/posts/create` || "http://localhost:4000/posts/create", { title });
       setTitle("");
     }
   };

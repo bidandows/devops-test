@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
@@ -11,16 +12,16 @@ app.post("/events", (req, res) => {
   events.push(event);
 
   axios
-    .post("http://localhost:4000/events", event)
+    .post(`${process.env.REACT_POSTS_API}/events` || "http://localhost:4000/events", event)
     .catch((err) => console.error(err));
   axios
-    .post("http://localhost:4001/events", event)
+    .post(`${process.env.REACT_COMMENTS_API}/events` || "http://localhost:4001/events", event)
     .catch((err) => console.error(err));
   axios
-    .post("http://localhost:4002/events", event)
+    .post(`${process.env.REACT_QUERY_API}/events` || "http://localhost:4002/events", event)
     .catch((err) => console.error(err));
   axios
-    .post("http://localhost:4003/events", event)
+    .post(` ${process.env.REACT_MODERATION_API}/events` || "http://localhost:4003/events", event)
     .catch((err) => console.error(err));
 
   res.send({ status: "OK" });
