@@ -13,7 +13,7 @@ services:
       - ./nginx_config:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
   frontend:
-    image: bidandows/frontend:sha-4a7f971
+    image: bidandows/frontend:sha-9f117d7
     container_name: frontend
     expose:
       - 80
