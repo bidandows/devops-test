@@ -92,6 +92,16 @@ jobs:
       - 
           name: commit and push
           uses: GuillaumeFalourd/git-commit-push@v1.3
+          with:
+            email: abdnacer.fried@gmail.com
+            name: Abdelnasser Fried
+            commit_message: "Update frontend image value on docker-compose"
+            target_branch: main
+            files: /deploy/docker-compose.yml
+            access_token: ${{ secrets.PAT }}
+            force: true
+            empty: true
+            tags: true
 
             
       - 
