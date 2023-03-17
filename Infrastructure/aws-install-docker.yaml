@@ -56,6 +56,12 @@
         dest: /home/ec2-user/devops-test
         single_branch: yes
         version: main
+    
+    - name: Change devops folder ownership
+      ansible.builtin.file:
+        path: /home/ec2-user/devops-test
+        owner: ec2-user
+        group: ec2-user
 
     - name: Start the docker-compose 
       community.docker.docker_compose:
