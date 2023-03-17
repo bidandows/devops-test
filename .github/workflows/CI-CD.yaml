@@ -51,11 +51,16 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      -
-        uses: priyesh2609/sha-trim-action@v1.1.2
+      - 
+        uses: benjlevesque/short-sha@v2.1
+        id: short-sha
         with:
-          sha-length: 7
-          env-name: 'SHORT_SHA'
+          length: 6
+      - 
+        name: short sha
+        run: echo $SHA
+        env: 
+          SHORT_SHA: ${{ steps.short-sha.outputs.sha }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
