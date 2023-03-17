@@ -32,8 +32,7 @@ jobs:
               - 'query/**'
   
   frontend:
-    if: needs.files-changed.steps.filter.outputs.client == 'true'
-    needs: files-changed
+    if: files-changed.steps.filter.outputs.client == 'true'
     name: build and deploy frontend application
     runs-on: ubuntu-latest
     timeout-minutes: 3
