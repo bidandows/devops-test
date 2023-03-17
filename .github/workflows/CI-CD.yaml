@@ -90,8 +90,8 @@ jobs:
       #     git config --local user.name "github-actions[bot]"
       #     git commit -a -m "Update frontend image value on docker-compose"
       - 
-          name: push
-          uses: actions-x/commit@v6
+          name: commit and push
+          uses: GuillaumeFalourd/git-commit-push@v1.3
 
             
       - 
