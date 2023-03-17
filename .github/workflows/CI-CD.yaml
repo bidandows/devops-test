@@ -165,7 +165,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./client/
+          context: ./comments/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/comments:buildcache
@@ -254,7 +254,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./client/
+          context: ./event/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/event-bus:buildcache
@@ -343,7 +343,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./client/
+          context: ./moderation/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/moderation:buildcache
@@ -433,7 +433,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./client/
+          context: ./posts/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/posts:buildcache
@@ -523,7 +523,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: ./client/
+          context: ./query/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/query:buildcache

@@ -3,6 +3,7 @@ services:
   nginx:
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
+    container_name: nginx
     env_file:
       - ./nginx-certbot.env
     ports:
@@ -13,16 +14,19 @@ services:
       - nginx_secrets:/etc/letsencrypt
   frontend:
     image: bidandows/frontend:sha-4a7f971
+    container_name: frontend
     expose:
       - 80
   comments:
     image: bidandows/comments:sha-4a7f971
+    container_name: comments
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4001
   event-bus:
     image: bidandows/event-bus:sha-4a7f971
+    container_name: event-bus
     environment:
       REACT_POSTS_API: http://posts:4000
       REACT_COMMENTS_API: http://comments:4001
@@ -32,68 +36,71 @@ services:
       - 4005
   moderation:
     image: bidandows/moderation:sha-4a7f971
+    container_name: moderation
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4003
   posts:
     image: bidandows/posts:sha-c4f7a2e
+    container_name: posts
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4000
   query:
     image: bidandows/query:sha-60d8c7c
+    container_name: query
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
-  # prometheus:
-  #   image: prom/prometheus:latest
-  #   container_name: prometheus
-  #   ports:
-  #     - "9090:9090"
-  #   volumes:
-  #     - ./prometheus_config:/etc/prometheus
-  #     - prometheus-data:/prometheus
-  #   restart: unless-stopped
-  #   command:
-  #     - "--config.file=/etc/prometheus/prometheus.yml"
-  # node_exporter:
-  #   image: quay.io/prometheus/node-exporter:latest
-  #   container_name: node_exporter
-  #   command:
-  #     - '--path.rootfs=/host'
-  #   pid: host
-  #   restart: unless-stopped
-  #   volumes:
-  #     - '/:/host:ro,rslave'
-  # grafana:
-  #   image: grafana/grafana-oss:latest
-  #   container_name: grafana
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - grafana-data:/var/lib/grafana
-  #   restart: unless-stopped
-  # cadvisor:
-  #   image: gcr.io/cadvisor/cadvisor:v0.47.0
-  #   container_name: cadvisor
-  #   ports:
-  #     - "8080:8080"
-  #   volumes:
-  #     - /:/rootfs:ro
-  #     - /var/run:/var/run:ro
-  #     - /sys:/sys:ro
-  #     - /var/lib/docker/:/var/lib/docker:ro
-  #     - /dev/disk/:/dev/disk:ro
-  #   devices:
-  #     - /dev/kmsg
-  #   restart: unless-stopped
-  #   privileged: true
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus_config:/etc/prometheus
+      - prometheus-data:/prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    container_name: cadvisor
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    restart: unless-stopped
+    privileged: true
 volumes:
   nginx_secrets:
-  # grafana-data:
-  #   driver: local
-  # prometheus-data:
-  #   driver: local
+  grafana-data:
+    driver: local
+  prometheus-data:
+    driver: local
