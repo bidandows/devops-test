@@ -81,18 +81,23 @@ jobs:
         with:
           cmd: yq -i '.services.frontend.image = "bidandows/frontend:3"' './deploy/docker-compose.yml'
 
-      - 
-        name: Commit files
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git commit -a -m "Update frontend image value on docker-compose"
+      # - 
+      #   name: Commit files
+      #   run: |
+      #     git config --local user.email "abdnacer.fired@gmail.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git commit -a -m "Update frontend image value on docker-compose"
       - 
         name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: github-actions-x/commit@v2.9
         with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'testing'
+          force-add: 'true'
+          files: deploy/docker-compose.yml
+          name: Github runner
+          email: runner@github.com 
       - 
         name: executing remote ssh commands
         uses: appleboy/ssh-action@v0.1.8
