@@ -51,9 +51,9 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0
-      - 
-        name: Add SHORT_SHA env property with commit short sha
-        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      # - 
+      #   name: Add SHORT_SHA env property with commit short sha
+      #   run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -72,14 +72,14 @@ jobs:
         with:
           context: ./client/
           push: true
-          tags: bidandows/frontend:${SHORT_SHA}
+          tags: bidandows/frontend:3
 
 
       -
         name: update docker-compose image value
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.services.frontend.image = bidandows/frontend:${SHORT_SHA}' './deploy/docker-compose.yml'
+          cmd: yq -i '.services.frontend.image = bidandows/frontend:3' './deploy/docker-compose.yml'
 
       - 
         name: Commit files
