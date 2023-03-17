@@ -1,10 +1,8 @@
 version: '3.9'
-
 services:
   nginx:
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
-    
     env_file:
       - ./nginx-certbot.env
     ports:
@@ -13,20 +11,16 @@ services:
     volumes:
       - ./nginx_config:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
-
-
   frontend:
-    image: frontend:2
+    image: bidandows/frontend:3
     expose:
-    - 80
+      - 80
   comments:
     image: comments:1
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4001
-
-
   event-bus:
     image: event-bus:1
     environment:
@@ -36,30 +30,23 @@ services:
       REACT_QUERY_API: http://query:4002
     expose:
       - 4005
-
   moderation:
     image: moderation:1
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4003
-
   posts:
     image: posts:1
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4000
-
-
   query:
     image: query:1
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
-
 volumes:
   nginx_secrets:
-
-
