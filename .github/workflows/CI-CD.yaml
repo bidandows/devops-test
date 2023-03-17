@@ -88,16 +88,8 @@ jobs:
       #     git config --local user.name "github-actions[bot]"
       #     git commit -a -m "Update frontend image value on docker-compose"
       - 
-        name: Push changes
-        uses: github-actions-x/commit@v2.9
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
-          commit-message: 'testing'
-          force-add: 'true'
-          files: deploy/docker-compose.yml
-          name: Github runner
-          email: runner@github.com 
+          name: push
+          uses: actions-x/commit@v6
       - 
         name: executing remote ssh commands
         uses: appleboy/ssh-action@v0.1.8
