@@ -99,7 +99,7 @@ jobs:
         name: update docker-compose image value
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.services.frontend.image = "${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
+          cmd: yq -i '.services.frontend.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
 
       - 
           name: commit and push
