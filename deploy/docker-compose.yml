@@ -12,7 +12,7 @@ services:
       - ./nginx_config:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
   frontend:
-    image: bidandows/frontend:sha-afd18f5
+    image: bidandows/frontend:sha-aa30026
     expose:
       - 80
   comments:
@@ -68,7 +68,6 @@ services:
     restart: unless-stopped
     volumes:
       - '/:/host:ro,rslave'
-  
   grafana:
     image: grafana/grafana-oss:latest
     container_name: grafana
@@ -77,10 +76,8 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     restart: unless-stopped
-
   cadvisor:
-    
-    image: gcr.io/cadvisor/cadvisor:v0.47.0     
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
     container_name: cadvisor
     ports:
       - "8080:8080"
@@ -97,10 +94,7 @@ services:
     privileged: true
 volumes:
   nginx_secrets:
-
   grafana-data:
     driver: local
   prometheus-data:
     driver: local
-
-
