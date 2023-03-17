@@ -10,6 +10,7 @@ jobs:
     name: detect what files changed
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     outputs:
       client: ${{ steps.filter.outputs.client }}
       event-bus: ${{ steps.filter.outputs.event-bus }}
@@ -93,17 +94,17 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
 
             
       - 
@@ -176,17 +177,18 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
+            
 
             
       - 
@@ -259,17 +261,18 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
+            
 
             
       - 
@@ -342,17 +345,18 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
+            
 
             
       - 
@@ -426,17 +430,18 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
+            
 
             
       - 
@@ -510,17 +515,18 @@ jobs:
 
       - 
           name: commit and push
-          uses: GuillaumeFalourd/git-commit-push@v1.3
+          uses: github-actions-x/commit@v2.9
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "skip-ci"
-            target_branch: main
+            commit-message: "skip ci"
+            push-branch: main
             files: deploy/docker-compose.yml
-            access_token: ${{ secrets.PAT }}
-            force: true
-            empty: true
-            tags: true
+            github-token: ${{ secrets.PAT }}
+            rebase: 'true'
+            
+            
+            
 
             
       - 
