@@ -12,7 +12,7 @@ services:
       - ./nginx_config:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
   frontend:
-    image: bidandows/frontend:3
+    image: bidandows/frontend:bidandows/frontend:sha-1269c2b
     expose:
       - 80
   comments:
