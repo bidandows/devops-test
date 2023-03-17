@@ -65,14 +65,14 @@ jobs:
         with:
           context: ./client/
           push: true
-          tags: frontend:${{ SHORT_SHA }}
+          tags: bidandows/frontend:${{ SHORT_SHA }}
 
 
       -
         name: update docker-compose image value
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.services.frontend.image = frontend:${{ SHORT_SHA }}' './deploy/docker-compose.yml'
+          cmd: yq -i '.services.frontend.image = bidandows/frontend:${{ SHORT_SHA }}' './deploy/docker-compose.yml'
 
       - 
         name: Commit files
@@ -98,5 +98,6 @@ jobs:
             cd ~/devops-test
             git pull
             cd deploy
+            docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             docker-compose up -d --force-recreate frontend
 
