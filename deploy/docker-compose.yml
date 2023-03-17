@@ -22,7 +22,7 @@ services:
     expose:
       - 4001
   event-bus:
-    image: bidandows/event-bus:sha-aa30026
+    image: bidandows/event-bus:sha-4a7f971
     environment:
       REACT_POSTS_API: http://posts:4000
       REACT_COMMENTS_API: http://comments:4001
