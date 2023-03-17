@@ -6,11 +6,6 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
 
-  cancel-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action
   files-changed:
     name: detect what files changed
     runs-on: ubuntu-latest
