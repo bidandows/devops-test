@@ -49,11 +49,13 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
         with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          persist-credentials: false
           fetch-depth: 0
-      # - 
-      #   name: Add SHORT_SHA env property with commit short sha
-      #   run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+      -
+        uses: priyesh2609/sha-trim-action@v1.1.2
+        with:
+          sha-length: 7
+          env-name: 'SHORT_SHA'
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -72,7 +74,7 @@ jobs:
         with:
           context: ./client/
           push: true
-          tags: bidandows/frontend:3
+          tags: bidandows/frontend:${SHORT_SHA}
           cache-from: type=registry,ref=bidandows/frontend:buildcache
           cache-to: type=registry,ref=bidandows/frontend:buildcache,mode=max
 
@@ -81,14 +83,8 @@ jobs:
         name: update docker-compose image value
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.services.frontend.image = "bidandows/frontend:3"' './deploy/docker-compose.yml'
+          cmd: yq -i '.services.frontend.image = "bidandows/frontend:${SHORT_SHA}"' './deploy/docker-compose.yml'
 
-      # - 
-      #   name: Commit files
-      #   run: |
-      #     git config --local user.email "abdnacer.fired@gmail.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git commit -a -m "Update frontend image value on docker-compose"
       - 
           name: commit and push
           uses: GuillaumeFalourd/git-commit-push@v1.3
@@ -114,6 +110,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/devops-test
+            git reset --hard
             git pull
             cd deploy
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
