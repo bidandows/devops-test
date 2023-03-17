@@ -79,7 +79,7 @@ jobs:
         name: update docker-compose image value
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.services.frontend.image = bidandows/frontend:3' './deploy/docker-compose.yml'
+          cmd: yq -i '.services.frontend.image = "bidandows/frontend:3"' './deploy/docker-compose.yml'
 
       - 
         name: Commit files
