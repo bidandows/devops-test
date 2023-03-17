@@ -93,6 +93,11 @@ jobs:
           cmd: yq -i '.services.frontend.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
 
       - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 10 )  + 1 ]s
+        shell: bash
+
+      - 
           name: commit and push
           uses: github-actions-x/commit@v2.9
           with:
@@ -104,9 +109,7 @@ jobs:
             github-token: ${{ secrets.PAT }}
             rebase: 'true'
             
-            
 
-            
       - 
         name: executing remote ssh commands
         uses: appleboy/ssh-action@v0.1.8
@@ -174,6 +177,11 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.services.comments.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
+
+      - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 20 )  + 1 ]s
+        shell: bash
 
       - 
           name: commit and push
@@ -260,6 +268,11 @@ jobs:
           cmd: yq -i '.services.event-bus.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
 
       - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 20 )  + 1 ]s
+        shell: bash
+
+      - 
           name: commit and push
           uses: github-actions-x/commit@v2.9
           with:
@@ -342,6 +355,11 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.services.moderation.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
+
+      - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 20 )  + 1 ]s
+        shell: bash
 
       - 
           name: commit and push
@@ -427,6 +445,11 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.services.posts.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
+      
+      - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 20 )  + 1 ]s
+        shell: bash
 
       - 
           name: commit and push
@@ -512,6 +535,11 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: yq -i '.services.query.image = "${{ steps.meta.outputs.tags }}"' './deploy/docker-compose.yml'
+
+      - 
+        name: Sleep for 30 seconds
+        run: sleep $[ ( $RANDOM % 20 )  + 1 ]s
+        shell: bash
 
       - 
           name: commit and push
