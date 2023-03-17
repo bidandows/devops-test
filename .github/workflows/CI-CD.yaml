@@ -10,12 +10,18 @@ jobs:
     name: detect what files changed
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    outputs:
+      client: ${{ steps.filter.outputs.client }}
+      event-bus: ${{ steps.filter.outputs.event-bus }}
+      comments: ${{ steps.filter.outputs.comments }}
+      moderation: ${{ steps.filter.outputs.moderation }}
+      posts: ${{ steps.filter.outputs.posts }}
+      query: ${{ steps.filter.outputs.query }}
     steps:
       - uses: actions/checkout@v3
 
       - name: check for devops repo file changes
-        uses: getsentry/paths-filter@v2.11.1
-
+        uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |
@@ -31,10 +37,11 @@ jobs:
               - 'posts/**'
             query:
               - 'query/**'
+          list-files: shell
   
   frontend:
-    if: needs.files-changed.steps.filter.outputs.client == 'true'
     needs: files-changed
+    if: ${{ needs.files-changed.outputs.client == 'true' }}
     name: build and deploy frontend application
     runs-on: ubuntu-latest
     steps:
