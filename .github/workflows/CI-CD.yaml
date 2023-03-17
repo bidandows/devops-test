@@ -90,6 +90,9 @@ jobs:
       - 
           name: push
           uses: actions-x/commit@v6
+          with:
+            token: ${{ secrets.PAT }}
+            
       - 
         name: executing remote ssh commands
         uses: appleboy/ssh-action@v0.1.8
