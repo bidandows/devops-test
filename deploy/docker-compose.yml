@@ -49,7 +49,7 @@ services:
     expose:
       - 4000
   query:
-    image: bidandows/query:sha-60d8c7c
+    image: bidandows/query:sha-9f117d7
     container_name: query
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
