@@ -10,6 +10,7 @@ jobs:
     name: detect what files changed
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
     outputs:
       client: ${{ steps.filter.outputs.client }}
       event-bus: ${{ steps.filter.outputs.event-bus }}
@@ -97,7 +98,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update frontend image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
@@ -180,7 +181,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update comments image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
@@ -263,7 +264,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update event-bus image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
@@ -346,7 +347,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update moderation image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
@@ -430,7 +431,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update posts image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
@@ -514,7 +515,7 @@ jobs:
           with:
             email: abdnacer.fried@gmail.com
             name: Abdelnasser Fried
-            commit_message: "Update query image value on docker-compose"
+            commit_message: "skip-ci"
             target_branch: main
             files: deploy/docker-compose.yml
             access_token: ${{ secrets.PAT }}
