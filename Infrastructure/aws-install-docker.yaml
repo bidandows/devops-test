@@ -46,9 +46,6 @@
         - docker-compose
         - PyYAML
         - docker
-    - name: add Var to bashrc
-      shell: if ! grep "COMPOSE_PROJECT_NAME" /home/ec2-user/.bashrc; then echo "export COMPOSE_PROJECT_NAME=digital" >> /home/ec2-user/.bashrc; fi
-
 
     - name: Clone of a single branch
       ansible.builtin.git:
