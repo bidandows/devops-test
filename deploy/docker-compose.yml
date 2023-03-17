@@ -16,7 +16,7 @@ services:
     expose:
       - 80
   comments:
-    image: comments:1
+    image: bidandows/comments:sha-aa30026
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
