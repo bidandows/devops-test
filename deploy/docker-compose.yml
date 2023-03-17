@@ -25,7 +25,7 @@ services:
     expose:
       - 4001
   event-bus:
-    image: bidandows/event-bus:sha-4a7f971
+    image: bidandows/event-bus:sha-2e58a12
     container_name: event-bus
     environment:
       REACT_POSTS_API: http://posts:4000
