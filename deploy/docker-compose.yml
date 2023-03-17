@@ -37,7 +37,7 @@ services:
     expose:
       - 4003
   posts:
-    image: posts:1
+    image: bidandows/posts:sha-aa30026
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
