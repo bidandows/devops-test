@@ -43,7 +43,7 @@ services:
     expose:
       - 4000
   query:
-    image: query:1
+    image: bidandows/query:sha-14f035f
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
