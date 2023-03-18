@@ -1,5 +1,4 @@
 version: '3.9'
-
 volumes:
   nginx_secrets:
   prometheus_data: {}
@@ -18,7 +17,7 @@ services:
       - ./nginx_config:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
   frontend:
-    image: bidandows/frontend:sha-2e58a12
+    image: bidandows/frontend:sha-eb3e67f
     container_name: frontend
     expose:
       - 80
@@ -60,9 +59,7 @@ services:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
-
-
-# Monitoring
+      # Monitoring
   prometheus:
     image: prom/prometheus:v2.43.0-rc.1
     container_name: prometheus
@@ -79,7 +76,6 @@ services:
     restart: unless-stopped
     ports:
       - 9090
-
   nodeexporter:
     image: prom/node-exporter:v1.5.0
     container_name: nodeexporter
@@ -95,7 +91,6 @@ services:
     restart: unless-stopped
     expose:
       - 9100
-
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.47.0
     container_name: cadvisor
@@ -108,7 +103,6 @@ services:
     restart: unless-stopped
     expose:
       - 8080
-
   grafana:
     image: grafana/grafana:9.4.3-ubuntu
     container_name: grafana
@@ -122,10 +116,3 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-
-
-
-
-
-
-
