@@ -71,7 +71,7 @@ jobs:
         with:
           node-version: '19.0'
 
-      - run: npm install
+      - run: cd client && npm install
       - run: npm run test
       -
         name: Docker meta
