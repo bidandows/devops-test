@@ -119,6 +119,8 @@ services:
     
   loki:
     image: grafana/loki:latest
+    volumes:
+      - ./loki/loki-config.yaml:/mnt/config/loki-config.yaml
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -126,5 +128,6 @@ services:
   promtail:
     image: grafana/promtail:latest
     volumes:
-      - /var/log:/var/log
+      - ./loki/promtail-config.yaml:/mnt/config/promtail-config.yaml
+      - /var/lib/docker/containers:/host/containers
     command: -config.file=/etc/promtail/config.yml
