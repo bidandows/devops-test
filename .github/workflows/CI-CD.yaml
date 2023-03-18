@@ -4,12 +4,15 @@ on:
   push: 
     paths-ignore:
       - 'deploy/docker-compose.yml'
+      - 'Infrastructure/**'
   pull_request:
     paths-ignore:
       - 'deploy/docker-compose.yml'
+      - 'Infrastructure/**'
   workflow_dispatch:
     paths-ignore:
       - 'deploy/docker-compose.yml'
+      - 'Infrastructure/**'
 
 
 
