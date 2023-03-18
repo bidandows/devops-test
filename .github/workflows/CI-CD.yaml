@@ -66,6 +66,14 @@ jobs:
           fetch-depth: 0
 
       -
+        name: comments list unit tests
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19.0'
+
+      - run: npm install
+      - run: npm run test
+      -
         name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
