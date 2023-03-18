@@ -57,7 +57,12 @@
     - name: Change devops folder ownership
       shell: chown -R ec2-user:ec2-user /home/ec2-user/devops-test
 
-    - name: Start the docker-compose 
+    - name: Start the monitoring docker-compose 
+      community.docker.docker_compose:
+        project_src: /home/ec2-user/devops-test/infrastructure/monitoring/
+        state: present
+
+    - name: Start the application docker-compose 
       community.docker.docker_compose:
         project_src: /home/ec2-user/devops-test/deploy/
         state: present
