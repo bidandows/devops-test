@@ -59,7 +59,7 @@ services:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
-      # Monitoring
+######################### Monitoring ####################################
   prometheus:
     image: prom/prometheus:v2.43.0-rc.1
     container_name: prometheus
