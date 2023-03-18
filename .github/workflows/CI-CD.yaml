@@ -66,12 +66,14 @@ jobs:
           fetch-depth: 0
 
       -
-        name: comments list unit tests
+        name: Install nodejs
         uses: actions/setup-node@v3
         with:
           node-version: '19.0'
 
-      - run: cd client && npm install && npm run test
+      - 
+        name: comments list unit tests
+        run: cd client && npm install && npm run test
       -
         name: Docker meta
         id: meta
