@@ -42,7 +42,7 @@ services:
     expose:
       - 4003
   posts:
-    image: bidandows/posts:sha-9f117d7
+    image: bidandows/posts:sha-eb05a06
     container_name: posts
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
