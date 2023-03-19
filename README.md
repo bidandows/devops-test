@@ -76,5 +76,15 @@ terraform apply -auto-approve
 ```
 when the command finish it will output the server ip address, so you can now add this ip to you name server and to github repository variables, then the application should be accessible via that domain name 
 
+### Access the Grafana dashboard
+
+We can access metrics dashboard via ssh tunnel as this service should be private
+
+```
+ssh -i deployer-priv-key -N -L localhost:3000:localhost:3000 ec2-user@server_IP
+```
+
+open the browser and access http://localhost:3000 the default password and username are admin
+
 
  
