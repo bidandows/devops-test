@@ -39,7 +39,7 @@ services:
     expose:
       - 4005
   moderation:
-    image: bidandows/moderation:sha-9f117d7
+    image: bidandows/moderation:sha-863120c
     container_name: moderation
     environment:
       REACT_EVENT_BUS: http://event-bus:4005
@@ -59,7 +59,7 @@ services:
       REACT_EVENT_BUS: http://event-bus:4005
     expose:
       - 4002
-######################### Monitoring ####################################
+      ######################### Monitoring ####################################
   prometheus:
     image: prom/prometheus:v2.43.0-rc.1
     container_name: prometheus
@@ -116,7 +116,6 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-    
   loki:
     image: grafana/loki:latest
     volumes:
@@ -124,7 +123,6 @@ services:
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
-
   promtail:
     image: grafana/promtail:latest
     volumes:
